@@ -3,7 +3,7 @@ from .models import Image,CommentImage
 class ImageUploadSerializer (serializers.ModelSerializer) :
     class Meta :
         model = Image
-        fields = ("image")
+        fields = "__all__"
 class CommentSerializer (serializers.ModelSerializer):
     class Meta :
         model = CommentImage

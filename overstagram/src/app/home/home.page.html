@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Overstagram
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br><br>
+  
+  <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
+  <br>
+  <ion-button (click)="UploadImg()"> Upload image </ion-button>
+  <ion-item *ngFor = "let i of picture">
+     <img src="{{i.image}}">
+  </ion-item>
+
+</ion-content>

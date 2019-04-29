@@ -19,7 +19,7 @@ class ImageUploadView (APIView):
         else:
             return Response(image_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CommentCreateView (generics.ListAPIView):
+class CommentCreateView (APIView):
     def post(self, request, *args, **kwargs):
         comment_serializer = CommentSerializer(data = request.data)
         if comment_serializer.is_valid():
