@@ -8,12 +8,15 @@
 
 <ion-content>
   <br><br>
-  
   <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
   <br>
+  <h2><ion-label position="floating">Caption </ion-label></h2>
+  <ion-input #captionInput ></ion-input>
+  
   <ion-button (click)="UploadImg()"> Upload image </ion-button>
   <ion-item *ngFor = "let i of picture">
-     <img src="{{i.image}}">
+    {{i.caption}}<br>
+    <ion-item><img class="imageholder"src="{{i.image}}"></ion-item>
+     
   </ion-item>
-
 </ion-content>

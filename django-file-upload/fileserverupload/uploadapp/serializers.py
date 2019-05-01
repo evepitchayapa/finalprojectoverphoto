@@ -8,7 +8,5 @@ class CommentSerializer (serializers.ModelSerializer):
     class Meta :
         model = CommentImage
         fields = ("comment")
-# class LikeSerializer (serializers.ModelSerializer):
-#     class Meta :
-#         model = UploadImage
-#         fields = ("like")
+
+

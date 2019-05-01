@@ -6,6 +6,7 @@ urlpatterns = [
     path ('addcomment/',CommentCreateView.as_view()),
     path ('img/',ImageShowView.as_view()),
     path ('comment/',commentShowView.as_view()),
+   
 ]
 
 

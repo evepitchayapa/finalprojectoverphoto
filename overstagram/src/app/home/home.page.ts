@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { APIService } from '../api.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
 import { concat } from  'rxjs';
@@ -18,6 +18,8 @@ export class HomePage {
   ngOnInit(){
     this.showImage();
   }
+  @ViewChild("captionInput") caption;
+
   
   getFiles():FileLikeObject[]{
     return this.fileUploader.queue.map((fileItem) => {
@@ -30,6 +32,7 @@ export class HomePage {
     files.forEach((file)=>{
       let formData = new FormData();
       formData.append('image',file.rawFile,file.name);
+      formData.append('caption',this.caption.value)
       requests.push(this.apiservice.uploadImageFormData(formData));
     });
     concat (...requests).subscribe(
@@ -40,6 +43,7 @@ export class HomePage {
         console.log(err);
       }
     );
+    this.showImage()
   }
 showImage(){
   this.apiservice.getImage().subscribe(res => {

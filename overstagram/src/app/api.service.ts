@@ -11,6 +11,10 @@ export class APIService {
   public uploadImageFormData(formData){
     return this.http.post<any>(`${this.DJANGO_API_SERVER}/upload/`, formData);
   }
+  public uploadCaptionFormData(formData){
+    return this.http.post<any>(`${this.DJANGO_API_SERVER}/addcaption/`, formData);
+  }
+
   public uploadCommentFormData (formData){
     return this.http.post<any>(`${this.DJANGO_API_SERVER}/addcomment/`, formData);
   }
@@ -19,5 +23,8 @@ export class APIService {
   }
   public getcomment (){
     return this.http.get(`${this.DJANGO_API_SERVER}/comment/`);
+  }
+  public getcaption (){
+    return this.http.get(`${this.DJANGO_API_SERVER}/captions/`);
   }
 }
