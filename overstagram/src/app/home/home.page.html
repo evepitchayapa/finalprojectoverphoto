@@ -13,7 +13,7 @@
   <h2><ion-label position="floating">Caption </ion-label></h2>
   <ion-input #captionInput ></ion-input>
   <ion-button  (click)="UploadImg()"> Upload image </ion-button> -->
-  
+  <ion-button (click)="onClickgotoUpload()">  upload </ion-button>
   <ion-card *ngFor = "let i of picture">
     <h2>caption : {{i.caption}}<br></h2>
     <img class="imageholder"src="{{i.image}}">

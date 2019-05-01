@@ -2,6 +2,8 @@ import { Component,ViewChild } from '@angular/core';
 import { APIService } from '../api.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
 import { concat } from  'rxjs';
+
+import { Router } from '@angular/router';
 import { GeneratedFile } from '@angular/compiler';
 
 @Component({
@@ -17,7 +19,7 @@ export class HomePage {
   like:any
   addlike:any
   listcomment = []
-  constructor (private apiservice :APIService){}
+  constructor (private apiservice :APIService,private router : Router){}
   ngOnInit(){
     this.showImage();
     this.showComment();
@@ -25,6 +27,9 @@ export class HomePage {
   @ViewChild("captionInput") caption;
   addcomment : any;
 
+  onClickgotoUpload(){
+    this.router.navigate(['/upload'])
+  }
   
   getFiles():FileLikeObject[]{
     return this.fileUploader.queue.map((fileItem) => {

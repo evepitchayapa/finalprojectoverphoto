@@ -2,6 +2,8 @@ import { Component,ViewChild ,OnInit} from '@angular/core';
 import { APIService } from '../api.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
 import { concat } from  'rxjs';
+import { Router } from '@angular/router';
+
 import { GeneratedFile } from '@angular/compiler';
 @Component({
   selector: 'app-upload',
@@ -13,7 +15,7 @@ export class UploadPage implements OnInit {
   public fileUploader :FileUploader = new FileUploader({});
   picture:any
   comment:any
-  constructor (private apiservice :APIService){}
+  constructor (private apiservice :APIService , private router :Router){}
   ngOnInit(){
   }
   @ViewChild("captionInput") caption;
@@ -40,6 +42,9 @@ export class UploadPage implements OnInit {
         console.log(err);
       }
     );
+  }
+  onClickgotoHome(){
+    this.router.navigate(['/home'])
   }
 
  
