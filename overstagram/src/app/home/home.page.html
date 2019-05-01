@@ -7,16 +7,24 @@
 </ion-header>
 
 <ion-content>
-  <br><br>
+  <!-- <br><br>
   <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
   <br>
   <h2><ion-label position="floating">Caption </ion-label></h2>
   <ion-input #captionInput ></ion-input>
+  <ion-button  (click)="UploadImg()"> Upload image </ion-button> -->
   
-  <ion-button (click)="UploadImg()"> Upload image </ion-button>
-  <ion-item *ngFor = "let i of picture">
-    {{i.caption}}<br>
-    <ion-item><img class="imageholder"src="{{i.image}}"></ion-item>
-     
-  </ion-item>
+  <ion-card *ngFor = "let i of picture">
+    <h2>caption : {{i.caption}}<br></h2>
+    <img class="imageholder"src="{{i.image}}">
+
+    <ion-label  position="floating">add comment</ion-label>
+    <ion-input type = "text" [(ngModel)]= "addcomment"></ion-input>
+    <ion-button (click)="add_comment(i.id)">  add </ion-button>
+
+    <ion-label  *ngFor = "let c of comment"  >
+      <p *ngIf = "i.id == c.img_id">comment : {{c.comment}}</p>
+    </ion-label>
+  </ion-card>
+
 </ion-content>

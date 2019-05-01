@@ -10,9 +10,9 @@ class CommentImage (models.Model):
     comment = models.TextField()
 
     
-# class Likes (models.Model):
-#     img = models.ForeignKey(Image,on_delete = models.CASCADE)
-#     like = models.IntegerField() 
+class Likes (models.Model):
+    img_id = models.IntegerField(default=0)
+    like = models.IntegerField(default=0) 
 
 
 

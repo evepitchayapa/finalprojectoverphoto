@@ -1,30 +1,22 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,ViewChild ,OnInit} from '@angular/core';
 import { APIService } from '../api.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
 import { concat } from  'rxjs';
 import { GeneratedFile } from '@angular/compiler';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-upload',
+  templateUrl: './upload.page.html',
+  styleUrls: ['./upload.page.scss'],
 })
-export class HomePage {
-  
+export class UploadPage implements OnInit {
+
   public fileUploader :FileUploader = new FileUploader({});
   picture:any
   comment:any
-  like:any
-  addlike:any
-  listcomment = []
   constructor (private apiservice :APIService){}
   ngOnInit(){
-    this.showImage();
-    this.showComment();
   }
   @ViewChild("captionInput") caption;
-  addcomment : any;
-
   
   getFiles():FileLikeObject[]{
     return this.fileUploader.queue.map((fileItem) => {
@@ -48,36 +40,8 @@ export class HomePage {
         console.log(err);
       }
     );
-    this.showImage()
   }
-add_comment (id){
-    let requests = [];
-    let formData = new FormData();
 
-    formData.append('comment',this.addcomment)
-    formData.append('img_id',id)
-    requests.push(this.apiservice.uploadCommentFormData(formData));
-    concat (...requests).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) =>{
-        console.log(err);
-      }
-    );
-    this.fileUploader = new FileUploader({});
-    
-}
-showImage(){
-  this.apiservice.getImage().subscribe(res => {
-    this.picture = res
-  })
-  }
-showComment(){
-  this.apiservice.getcomment().subscribe(res => {
-    this.comment = res
-  });
-
-}
  
+
 }

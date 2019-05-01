@@ -1,9 +1,9 @@
-from uploadapp.models import Image,CommentImage
+from uploadapp.models import Image,CommentImage,Likes
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from . serializers import ImageUploadSerializer,CommentSerializer
+from . serializers import ImageUploadSerializer,CommentSerializer,LikeSerializer
 from rest_framework.parsers import FileUploadParser
 from rest_framework import generics
 
@@ -26,6 +26,15 @@ class CommentCreateView (APIView):
             return Response(comment_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(comment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class LikeCreateView (APIView):
+    def post(self, request, *args, **kwargs):
+        like_serializer = LikeSerializer(data = request.data)
+        if like_serializer.is_valid():
+            like_serializer.save()
+            return Response(like_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(like_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ImageShowView (generics.ListAPIView):
     queryset = Image.objects.all()
@@ -34,3 +43,6 @@ class ImageShowView (generics.ListAPIView):
 class commentShowView (generics.ListAPIView):
     queryset = CommentImage.objects.all()
     serializer_class = CommentSerializer
+class LikeShowView (generics.ListAPIView):
+    queryset = Likes.objects.all()
+    serializer_class = LikeSerializer

@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>upload Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+        <br><br>
+        <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
+        <br>
+        <h2><ion-label position="floating">Caption </ion-label></h2>
+        <ion-input #captionInput ></ion-input>
+        <ion-button (click)="UploadImg()"> Upload image </ion-button>
+</ion-content>

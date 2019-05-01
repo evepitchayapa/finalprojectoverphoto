@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Image,CommentImage
+from .models import Image,CommentImage,Likes
 class ImageUploadSerializer (serializers.ModelSerializer) :
     class Meta :
         model = Image
@@ -7,6 +7,10 @@ class ImageUploadSerializer (serializers.ModelSerializer) :
 class CommentSerializer (serializers.ModelSerializer):
     class Meta :
         model = CommentImage
-        fields = ("comment")
+        fields = "__all__"
+class LikeSerializer (serializers.ModelSerializer):
+    class Meta :
+        model = Likes
+        fields = "__all__"
 
 
